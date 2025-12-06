@@ -4,21 +4,21 @@ on:
 
 jobs:
     build-static:
-    name: Build the latest Joplin Web
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v4
+      name: Build the latest Joplin Web
+      runs-on: ubuntu-latest
+      steps:
+        -
+          name: Checkout
+          uses: actions/checkout@v4
 
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        -
+          name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v3
 
-      -
-        name: Build & publish Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: joplin-web.dockerfile
-          tags: joplin-web:latest
+        -
+          name: Build & publish Docker image
+          uses: docker/build-push-action@v6
+          with:
+            context: .
+            file: joplin-web.dockerfile
+            tags: joplin-web:latest
