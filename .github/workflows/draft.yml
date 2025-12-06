@@ -1,24 +1,26 @@
 name: Build & deploy the latest Joplin Web
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-    build-static:
-      name: Build the latest Joplin Web
-      runs-on: ubuntu-latest
-      steps:
-        -
-          name: Checkout
-          uses: actions/checkout@v4
+  build-static:
+    name: Build the latest Joplin Web
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ubmodules: 'true'
 
-        -
-          name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-        -
-          name: Build & publish Docker image
-          uses: docker/build-push-action@v6
-          with:
-            context: .
-            file: joplin-web.dockerfile
-            tags: joplin-web:latest
+      -
+        name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: joplin-web.dockerfile
+          tags: joplin-web:latest
