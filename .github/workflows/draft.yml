@@ -24,3 +24,18 @@ jobs:
           context: .
           file: joplin-web.dockerfile
           tags: joplin-web:latest
+
+      - name: Check the image
+        run: |
+          docker images -a;
+
+      - name: Copy static
+        run: |
+          docker create --name=tmp joplin-web:latest &&
+          docker cp tmp:/static/ . &&
+          docker rm tmp ;
+
+      - name: Check the static
+        run: |
+          ls -lah ;
+          ls -lah ./static/ ;
