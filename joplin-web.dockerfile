@@ -1,5 +1,7 @@
 # FROM ubuntu:24.04
-FROM node:18 AS build
+ARG NODE_VERSION=18
+ARG NODE_IMAGE=node
+FROM ${NODE_IMAGE}:${NODE_VERSION} AS build
 
 RUN uname -a
 
