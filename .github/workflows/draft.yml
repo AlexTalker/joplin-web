@@ -11,7 +11,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v4
         with:
-          ubmodules: 'true'
+          submodules: 'true'
 
       -
         name: Set up Docker Buildx
