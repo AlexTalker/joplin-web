@@ -19,6 +19,7 @@ jobs:
 
       -
         name: Build Docker image
+        id: docker-buildx
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -28,6 +29,7 @@ jobs:
       - name: Check the image
         run: |
           docker images -a;
+          echo ${{ steps.docker-buildx.outputs.imageid }};
 
       - name: Copy static
         run: |
