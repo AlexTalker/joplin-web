@@ -34,8 +34,8 @@ jobs:
 
       - name: Copy static
         run: |
-          docker create --name=tmp joplin-web:latest &&
-          docker cp tmp:/static/ . &&
+          docker create --name=tmp joplin-web:latest noop &&
+          docker cp tmp:/static . &&
           docker rm tmp ;
 
       - name: Check the static
