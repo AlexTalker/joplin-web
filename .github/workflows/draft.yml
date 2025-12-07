@@ -23,6 +23,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          load: true
           file: joplin-web.dockerfile
           tags: joplin-web:latest
 
