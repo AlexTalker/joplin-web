@@ -18,6 +18,11 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       -
+        name: Fetch the repo
+        run: |
+          make all
+
+      -
         name: Build Docker image
         id: docker-buildx
         uses: docker/build-push-action@v6
@@ -48,4 +53,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: joplin-web
+          path: ./static/
+
+      - name: Prepare the static for GitHub Pages
+        id: deployment
+        uses: actions/upload-pages-artifact@v4 # or specific "vX.X.X" version tag for this action
+        with:
           path: ./static/
