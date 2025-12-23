@@ -1,0 +1,25 @@
+name: Build & deploy the latest Joplin Web
+on:
+  workflow_dispatch:
+
+jobs:
+  build-static:
+    uses: ./.github/workflows/draft.yml
+    secrets: inherit
+
+  deploy-static:
+    name: Deploy the latest Joplin Web
+    needs: build-static
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

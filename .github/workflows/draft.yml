@@ -1,5 +1,6 @@
-name: Build & deploy the latest Joplin Web
+name: Build the latest Joplin Web
 on:
+  workflow_call:
   workflow_dispatch:
 
 jobs:
